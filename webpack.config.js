@@ -1,5 +1,6 @@
-const webpac = require('webpack');
-const path = require('path');
+// webpack.config.js
+const webpack = require('webpack')
+const path = require('path')
 
 const config = {
   context: path.resolve(__dirname, 'src'),
@@ -15,7 +16,7 @@ const config = {
       use: [{
         loader: 'babel-loader',
         options: {
-          preset: [
+          presets: [
             ['es2015', { modules: false }]
           ]
         }
