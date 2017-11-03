@@ -2,12 +2,21 @@
 const webpack = require('webpack')
 const path = require('path')
 
+const extractCommons = new
+webpack.optimize.CommonsChunkPlugin({
+  name: 'commons',
+  filename: 'commons.js'
+})
+
 const config = {
   context: path.resolve(__dirname, 'src'),
-  entry: './app.js',
+  entry: {
+    app: './app.js',
+    admin: './admin.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [
@@ -39,7 +48,10 @@ const config = {
         }]
       }
     ]
-  }
+  },
+  plugins: [
+    extractCommons
+  ]
 }
 
 module.exports = config
